@@ -5,7 +5,7 @@ import cloudinary.api
 
 # Configuración de la página web
 strl.set_page_config(page_title="Buscador en la Nube", page_icon="☁️", layout="wide")
-strl.title("☁️ Buscador de Imágenes Guardadas en la Nube")
+strl.title("☁️ Buscador de Imágenes Guardadas")
 
 # =====================================================================
 # 🛠️ CONFIGURACIÓN DE LA NUBE (Reemplaza con tus datos de Cloudinary)
@@ -20,14 +20,14 @@ cloudinary.config(
 
 # 1. Zona de subida de archivos a la nube
 imagenes_cargadas = strl.file_uploader(
-    "📁 Sube imágenes directamente a la nube:", 
+    "📁 Sube imágenes directamente aqui:", 
     type=["png", "jpg", "jpeg", "bmp", "gif"], 
     accept_multiple_files=True
 )
 
 # Enviar los archivos al servidor en la nube inmediatamente al subirlos
 if imagenes_cargadas:
-    with strl.spinner("Subiendo archivos a la nube..."):
+    with strl.spinner("Subiendo archivos..."):
         for archivo in imagenes_cargadas:
             try:
                 # Subir archivo usando el nombre original como identificador público
@@ -39,10 +39,10 @@ if imagenes_cargadas:
                 )
             except Exception as e:
                 pass # Ignora si el archivo ya existe en la nube
-    strl.success("¡Sincronización con la nube completada con éxito!")
+    strl.success("¡Sincronización completada con éxito!")
 
 # 2. Zona de la barra de búsqueda
-palabra_clave = strl.text_input("🔍 Escribe una palabra para buscar en la nube:")
+palabra_clave = strl.text_input("🔍 Escribe una palabra para buscar:")
 palabra_clave_min = palabra_clave.strip().lower()
 
 # 3. Consultar las imágenes almacenadas en la nube
